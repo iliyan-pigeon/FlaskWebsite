@@ -23,5 +23,10 @@ def template():
     return render_template("index.html")
 
 
+@app.route("/single-content")
+def single_content():
+    return render_template("single_content.html", content="The single content!")
+
+
 if __name__ == "__main__":
     app.run()
