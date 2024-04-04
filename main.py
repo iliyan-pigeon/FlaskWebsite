@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, request
 
 app = Flask(__name__)
 
@@ -31,6 +31,20 @@ def single_content():
 @app.route("/list-of-contents")
 def list_of_contents():
     return render_template("list_of_contents.html", content=["first", "second", "third"])
+
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        usr = request.form["nm"]
+        return redirect(url_for("the_user", usr=usr))
+    else:
+        return render_template("login.html")
+
+
+@app.route("/<usr>")
+def the_user(usr):
+    return f"<h1>This is the user: {usr}</h1>"
 
 
 if __name__ == "__main__":
