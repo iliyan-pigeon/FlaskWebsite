@@ -28,5 +28,10 @@ def single_content():
     return render_template("single_content.html", content="The single content!")
 
 
+@app.route("/list-of-contents")
+def list_of_contents():
+    return render_template("list_of_contents.html", content=["first", "second", "third"])
+
+
 if __name__ == "__main__":
     app.run()
